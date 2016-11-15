@@ -1,0 +1,32 @@
+{# _myapp/templates/about.html_ #}
+
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title" id="about-title">
+            <h1>Login with your demo credentials</h1>
+          </div>
+          <div class="chart-stage" id="leftStage">
+            <form action="" method="post">
+            <p>Please enter your demo key for a 30 minute demo session.</p>
+            <p><input class="login" type=text name=username>
+            <p><input class="login" type=submit value=Demo>
+            </form>
+          </div>
+          <div class="chart-notes">
+            This is only the demo version. Please contact guanghao@princeton.edu
+            for more information!
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+      </div>
+{% endblock %}

@@ -1,0 +1,189 @@
+{# _myapp/templates/visualize.html_ #}
+
+{% extends "layout.html" %}
+
+{% block title %}
+Locus Visualizer
+{% endblock %}
+
+{% block imports %}
+
+  {% assets "vis_css" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" />
+  {% endassets %}
+
+  {% assets "vis_head_js" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+
+{% endblock %}
+
+{% block content %}
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times</span>
+            <h3 id="modalTitle"></h3>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row" id="modal-top-left">
+                  <div class="col-sm-12" >
+                    <div class="chart-wrapper" id="desc-info">
+                      <div class="chart-title" id="descTitle"></div>
+                      <div id="node-desc">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" id="modal-bottom-left">
+                  <div class="col-sm-12" >
+                    <table id="assocHead"></table>
+                    <div class="chart-wrapper" id="assoc-info">
+                      <table id="associated"></table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row" id="modal-top-right">
+                  <div class="col-sm-12">
+                    <div class="chart-wrapper">
+                      <div class="chart-stage" id="modalStage">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" id="modal-bottom-right">
+                  <div class="col-sm-6" >
+                    <table class="table-head">
+                      <tr><th>Incoming Edge</th><th>Weight</th></tr>
+                    </table>
+                    <div class="chart-wrapper" id="edge-info">
+                      <table id="incoming"></table>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <table class="table-head">
+                      <tr><th>Outgoing Edge</th><th>Weight</th></tr>
+                    </table>
+                    <div class="chart-wrapper" id="edge-info">
+                     <table id="outgoing"></table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Options Column -->
+      <div class="col-sm-2">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Visualization Options
+          </div>
+          <div class="chart-stage" id="leftStage">
+            <div id="options">
+              <div class="redrawBar">
+                Something Went Wrong?
+                <br>
+                <a class="button" onclick="reDraw()">Redraw Visualization</a>
+              </div>
+              <div class="toggleBar">
+                Show All Nodes
+                <div class="fillToggle">
+                  <input id="fillIn" class="toggle" type="checkbox"/>
+                  <label for="fillIn"></label>
+                </div>
+              </div>
+              <div class="toggleBar">
+                Highlight Edges
+                <div class="edgeToggle">
+                  <input id="toggleIn" class="toggle" type="checkbox"/>
+                  <label for="toggleIn"></label>
+                </div>
+              </div>
+              <div class="slideBar">  
+                Node Font Size
+                <div class="slider" id="nodeSlide"></div>
+                <input class="slideIn" id="nodeIn" type="text"/>
+              </div>
+              <div class="slideBar">  
+                Edge Width
+                <div class="slider" id="edgeSlide"></div>
+                <input class="slideIn" id="edgeIn" type="text"/>
+              </div>
+              <div class="slideBar">  
+                Bundle Tension
+                <div class="slider" id="tension"></div>
+                <input class="slideIn" id="tensionIn" type="text"/>
+              </div>
+              <div class="slideBar" id="edgeWeight">  
+                Edge Weight Filter
+                <div class="slider" id="weight"></div>
+                <div id="weightInputs">
+                  <input class="slideIn" id="weightMinIn" type="text"/>
+                  <input class="slideIn" id="weightMaxIn" type="text"/>
+                </div>
+              </div>
+              <div class="slideBar" id="topInBar">   
+                <span>Showing Top </span><span id="inText"></span><span> Inputs</span>
+                <div class="slider" id="topIn"></div>
+                <input class="slideIn" id="inIn" type="text"/>
+              </div>
+              <div class="slideBar">    
+                <span>Showing Top </span><span id="outText"></span><span> Outputs</span>
+                <div class="slider" id="topOut"></div>
+                <input class="slideIn" id="outIn" type="text"/>
+              </div>
+            </div>
+          </div>
+          <div class="chart-notes">
+            Visualization options
+          </div>
+        </div>
+      </div>
+      <!-- Main Chart Column -->
+      <div class="col-sm-8">
+        <div class="chart-wrapper">
+          <div class="chart-title" id="mainTitle">
+            {{ main }}
+          </div>
+          <div class="chart-stage" id="mainStage">
+            
+          </div>
+          <div class="chart-notes">
+            Hover over nodes to see names and highlight connections, click or select them in search for more information
+          </div>
+        </div>
+      </div>
+      <!-- Search Bar and Node Information Column -->
+      <div class="col-sm-2">
+        <input id="search" type="text"/>
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            {{ side }}
+          </div>
+          <div class="chart-stage" id="rightStage">
+            <div id="selfName">
+              {{ side_desc }}
+            </div>
+          </div>
+          <div class="chart-notes">
+            Click for more information
+          </div>
+        </div>
+      </div>
+{% endblock %}
+
+{% block footer %}
+    <script> var graphURL = "{{ graphURL }}" </script>
+
+  {% assets "vis_foot_js" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+
+{% endblock %}

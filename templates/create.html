@@ -1,0 +1,43 @@
+{# _myapp/templates/about.html_ #}
+
+{% extends "layout.html" %}
+
+{% block title %}
+Create
+{% endblock %}
+
+{% block content %}
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title" id="about-title">
+            <h1>Create user demos</h1>
+          </div>
+          <div class="chart-stage" id="leftStage">
+            <form action="" method="post">
+            <p>Add new user</p>
+            <p><input class="login" type=text name=username>
+            <p><input class="login" type=submit value=Create>
+            </form>
+            <table id="usertable">
+              <tr>
+                <th>Username</th>
+                <th>Access Time</th>
+              </tr>
+              {% for user in users %}
+              <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+          <div class="chart-notes">
+            You did good! ^.^
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+      </div>
+{% endblock %}

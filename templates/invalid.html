@@ -1,0 +1,28 @@
+{# _myapp/templates/about.html_ #}
+
+{% extends "layout.html" %}
+
+{% block title %}
+Invalid Credentials
+{% endblock %}
+
+{% block content %}
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title" id="about-title">
+            <h1>Invalid Access Credentials</h1>
+          </div>
+          <div class="chart-stage" id="leftStage">
+            {{ mes }}
+          </div>
+          <div class="chart-notes">
+            This is only the demo version. Please contact guanghao@princeton.edu
+            for more information!
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+      </div>
+{% endblock %}

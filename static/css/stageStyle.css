@@ -1,0 +1,220 @@
+.chart-title {
+  color: #3d4a57;
+}
+
+#leftStage,
+#mainStage {
+  height: 1000px;
+}
+
+#rightStage {
+  height: 944px;
+}
+
+#options {
+  -webkit-font-smoothing: antialiased;
+  display: block;
+  height: 100%;
+  align: top;
+  padding: 5%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 12px;
+  font-weight: 700; 
+  color: #3d4a57;
+}
+
+#options::-webkit-scrollbar,
+#search::-webkit-scrollbar { 
+  display: none; 
+}
+
+.redrawBar {
+  -webkit-font-smoothing: antialiased;
+  font: inherit;
+  margin: 0 .5em .5em .5em;
+  display: block;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  background-color: #3d4a57;
+  border-width: 3px;
+  border-radius: 5px;
+  border-color: #bbb;
+  color: white;
+  padding: .5em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: .5em;
+}
+
+.button:hover {
+  background-color: #bbb;
+  color: white;
+  text-decoration: none;
+}
+
+.toggleBar {
+  -webkit-font-smoothing: antialiased;
+  font: inherit;
+  vertical-align: center;
+  margin: 2em 0.5em 1em 0.5em;
+  display: block;
+  position: relative;
+}
+
+.fillToggle,
+.edgeToggle {
+  display: inline;
+  position: absolute;
+  right: 0;
+}
+
+.toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+
+.toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input.toggle + label {
+  padding: 2px;
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #bbb;
+  transition: background 0.4s;
+}
+
+input.toggle + label:before,
+input.toggle + label:after {
+  display: block;
+  position: absolute;
+  content: "";
+}
+
+input.toggle + label:before {
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  right: 2px;
+  background-color: #fff;
+  border-radius: 20px;
+  transition: background 0.4s;
+}
+
+input.toggle + label:after {
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: 12px;
+  border-radius: 12px;
+  background-color: #bbb;
+  transition: margin 0.4s, background 0.4s;
+}
+
+input.toggle:checked + label {
+  background-color: #3d4a57;
+}
+
+input.toggle:checked + label:after {
+  margin-left: 20px;
+  background-color: #3d4a57;
+}
+
+span {
+  -webkit-font-smoothing: antialiased;
+}
+
+.slideBar {
+  -webkit-font-smoothing: antialiased;
+  font: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #3d4a57; 
+  display: block; 
+  margin-top: 0;
+  padding: .5em;
+}
+
+#topInBar {
+  margin-top: 2.7em;
+}
+
+.slider {
+  font-weight: 300;
+  width: 100%;
+  margin-top: 3em;
+}
+
+.slideIn {
+  font-weight: 300;
+  width: 100%;
+  margin-top: 1em;
+  text-align: right;
+  color:  #666;
+  border: 2px solid #D9D9D9;
+  border-radius: 5px;
+}
+
+#weight {
+  margin: 3em 0 1.5em 0;
+}
+
+#weightInputs {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+#weightMinIn {
+  display: inline;
+  position: absolute;
+  width: 40%;
+}
+
+#weightMaxIn {
+  display: inline;
+  position: absolute;
+  width: 40%;
+  right: 0;
+}
+
+#search {
+  height: 46px;
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 0px 0px 10px 0px;
+  overflow-y: auto;
+}
+
+#selfName {
+  height: 100%;
+  margin: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#bundleWrapper {
+  display: block;
+  margin: auto;
+}
+
+#bundleGraph {
+  align: center;
+  vertical-align: center
+}
+

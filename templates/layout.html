@@ -1,0 +1,421 @@
+{# _visualize/templates/layout.html_ #}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  
+  <meta charset="utf-8" >
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
+
+  {% assets "menu_css" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" />
+  {% endassets %}
+
+  {% assets "menu_js" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+
+  {% block imports %}{% endblock %}
+
+</head>
+<body class = "application">
+  <header>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li>
+              <div class="dropdown" id="about-dropdown">
+                <a id="about" href="{{ url_for('admin.index') }}">About</a>
+              </div>
+            </li>
+            <li >
+              <div class="dropdown">
+                Loci
+                <div class="dropdown-content">
+                  <div class="dropdown-side" id="ls">
+                    Activity Hierarchy
+                    <div class="dropdown-content-side">
+                      <a href="{{ url_for('loci.activity_connections') }}">Connections</a>
+                      <div class="dropdown-side1" id="ls">
+                        Functional Proximity
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('loci.activity_fprox_nodes') }}">Node Similarity</a>
+                          <a href="{{ url_for('loci.activity_fprox_edges') }}">Edge Similarity</a>
+                          <a href="{{ url_for('loci.activity_fprox_simrank') }}">SimRank Score</a>
+                          <a href="{{ url_for('loci.activity_fprox_neighbor') }}">Neighbor Similarity</a>
+                          <a href="{{ url_for('loci.activity_fprox_vector') }}">Vector Similarity</a>
+                          <a href="{{ url_for('loci.activity_fprox_mean') }}">Mean Similarity</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Supply
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('loci.activity_supply_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('loci.activity_supply_markov') }}">Markov</a>
+                          <a href="{{ url_for('loci.activity_supply_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('loci.activity_supply_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-side" id="ls">
+                    Resource Hierarchy
+                    <div class="dropdown-content-side">
+                      <a href="{{ url_for('loci.resource_connections') }}">Connections</a>
+                      <div class="dropdown-side1" id="ls">
+                        Functional Proximity
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('loci.resource_fprox_nodes') }}">Node Similarity</a>
+                          <a href="{{ url_for('loci.resource_fprox_edges') }}">Edge Similarity</a>
+                          <a href="{{ url_for('loci.resource_fprox_simrank') }}">SimRank Score</a>
+                          <a href="{{ url_for('loci.resource_fprox_neighbor') }}">Neighbor Similarity</a>
+                          <a href="{{ url_for('loci.resource_fprox_vector') }}">Vector Similarity</a>
+                          <a href="{{ url_for('loci.resource_fprox_mean') }}">Mean Similarity</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Supply
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('loci.resource_supply_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('loci.resource_supply_markov') }}">Markov</a>
+                          <a href="{{ url_for('loci.resource_supply_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('loci.resource_supply_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="dropdown">
+                Barcodes
+                <div class="dropdown-content">
+                  <div class="dropdown-side" id="ls">
+                    Activity Hierarchy
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Functional Proximity
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('barcodes.activity_fprox_nodes') }}">Node Similarity</a>
+                          <a href="{{ url_for('barcodes.activity_fprox_edges') }}">Edge Similarity</a>
+                          <a href="{{ url_for('barcodes.activity_fprox_simrank') }}">SimRank Score</a>
+                          <a href="{{ url_for('barcodes.activity_fprox_neighbor') }}">Neighbor Similarity</a>
+                          <a href="{{ url_for('barcodes.activity_fprox_vector') }}">Vector Similarity</a>
+                          <a href="{{ url_for('barcodes.activity_fprox_mean') }}">Mean Similarity</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Supply
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('barcodes.activity_supply_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('barcodes.activity_supply_markov') }}">Markov</a>
+                          <a href="{{ url_for('barcodes.activity_supply_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('barcodes.activity_supply_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-side" id="ls">
+                    Resource Hierarchy
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Functional Proximity
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('barcodes.resource_fprox_nodes') }}">Node Similarity</a>
+                          <a href="{{ url_for('barcodes.resource_fprox_edges') }}">Edge Similarity</a>
+                          <a href="{{ url_for('barcodes.resource_fprox_simrank') }}">SimRank Score</a>
+                          <a href="{{ url_for('barcodes.resource_fprox_neighbor') }}">Neighbor Similarity</a>
+                          <a href="{{ url_for('barcodes.resource_fprox_vector') }}">Vector Similarity</a>
+                          <a href="{{ url_for('barcodes.resource_fprox_mean') }}">Mean Similarity</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Supply
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('barcodes.resource_supply_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('barcodes.resource_supply_markov') }}">Markov</a>
+                          <a href="{{ url_for('barcodes.resource_supply_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('barcodes.resource_supply_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="dropdown">
+                Companies
+                <div class="dropdown-content">
+                  <div class="dropdown-side" id="ls">
+                    Activity Hierarchy
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Functional Proximity
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.activity_fprox_nodes') }}">Node Similarity</a>
+                          <a href="{{ url_for('companies.activity_fprox_edges') }}">Edge Similarity</a>
+                          <a href="{{ url_for('companies.activity_fprox_simrank') }}">SimRank Score</a>
+                          <a href="{{ url_for('companies.activity_fprox_neighbor') }}">Neighbor Similarity</a>
+                          <a href="{{ url_for('companies.activity_fprox_vector') }}">Vector Similarity</a>
+                          <a href="{{ url_for('companies.activity_fprox_mean') }}">Mean Similarity</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Supply
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.activity_supply_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('companies.activity_supply_markov') }}">Markov</a>
+                          <a href="{{ url_for('companies.activity_supply_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('companies.activity_supply_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Competition
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.activity_competition_connections') }}">Connections</a>
+                          <a href="{{ url_for('companies.activity_competition_competitiveness') }}">Competitiveness</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-side" id="ls">
+                    Resource Hierarchy
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Functional Proximity
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.resource_fprox_nodes') }}">Node Similarity</a>
+                          <a href="{{ url_for('companies.resource_fprox_edges') }}">Edge Similarity</a>
+                          <a href="{{ url_for('companies.resource_fprox_simrank') }}">SimRank Score</a>
+                          <a href="{{ url_for('companies.resource_fprox_neighbor') }}">Neighbor Similarity</a>
+                          <a href="{{ url_for('companies.resource_fprox_vector') }}">Vector Similarity</a>
+                          <a href="{{ url_for('companies.resource_fprox_mean') }}">Mean Similarity</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Supply
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.resource_supply_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('companies.resource_supply_markov') }}">Markov</a>
+                          <a href="{{ url_for('companies.resource_supply_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('companies.resource_supply_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Competition
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.resource_competition_connections') }}">Connections</a>
+                          <a href="{{ url_for('companies.resource_competition_competitiveness') }}">Competitiveness</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-side" id="ls">
+                    Naics Hierarchy
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Functional Proximity
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.naics_fprox_nodes') }}">Node Similarity</a>
+                          <a href="{{ url_for('companies.naics_fprox_edges') }}">Edge Similarity</a>
+                          <a href="{{ url_for('companies.naics_fprox_simrank') }}">SimRank Score</a>
+                          <a href="{{ url_for('companies.naics_fprox_neighbor') }}">Neighbor Similarity</a>
+                          <a href="{{ url_for('companies.naics_fprox_vector') }}">Vector Similarity</a>
+                          <a href="{{ url_for('companies.naics_fprox_mean') }}">Mean Similarity</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Supply
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.naics_supply_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('companies.naics_supply_markov') }}">Markov</a>
+                          <a href="{{ url_for('companies.naics_supply_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('companies.naics_supply_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Competition
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.naics_competition_connections') }}">Connections</a>
+                          <a href="{{ url_for('companies.naics_competition_competitiveness') }}">Competitiveness</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-side" id="ls">
+                    Syntax Hierarchy
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Functional Proximity
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.syntax_fprox_nodes') }}">Node Similarity</a>
+                          <a href="{{ url_for('companies.syntax_fprox_edges') }}">Edge Similarity</a>
+                          <a href="{{ url_for('companies.syntax_fprox_simrank') }}">SimRank Score</a>
+                          <a href="{{ url_for('companies.syntax_fprox_neighbor') }}">Neighbor Similarity</a>
+                          <a href="{{ url_for('companies.syntax_fprox_vector') }}">Vector Similarity</a>
+                          <a href="{{ url_for('companies.syntax_fprox_mean') }}">Mean Similarity</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Supply
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.syntax_supply_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('companies.syntax_supply_markov') }}">Markov</a>
+                          <a href="{{ url_for('companies.syntax_supply_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('companies.syntax_supply_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Competition
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('companies.syntax_competition_connections') }}">Connections</a>
+                          <a href="{{ url_for('companies.syntax_competition_competitiveness') }}">Competitiveness</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li >
+              <div class="dropdown">
+                Ari Data
+                <div class="dropdown-content">
+                  <div class="dropdown-side" id="ls">
+                    Generated Data
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Activity Hierarchy
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('ari.gen_activity_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('ari.gen_activity_markov') }}">Markov</a>
+                          <a href="{{ url_for('ari.gen_activity_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('ari.gen_activity_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Resource Hierarchy
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('ari.gen_resource_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('ari.gen_resource_markov') }}">Markov</a>
+                          <a href="{{ url_for('ari.gen_resource_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('ari.gen_resource_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-side" id="ls">
+                    Real Data
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Activity Hierarchy
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('ari.real_activity_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('ari.real_activity_markov') }}">Markov</a>
+                          <a href="{{ url_for('ari.real_activity_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('ari.real_activity_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Resource Hierarchy
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('ari.real_resource_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('ari.real_resource_markov') }}">Markov</a>
+                          <a href="{{ url_for('ari.real_resource_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('ari.real_resource_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li >
+              <div class="dropdown">
+                Seattle Data
+                <div class="dropdown-content">
+                  <div class="dropdown-side" id="ls">
+                    Generated Data
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Activity Hierarchy
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('seattle.gen_activity_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('seattle.gen_activity_markov') }}">Markov</a>
+                          <a href="{{ url_for('seattle.gen_activity_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('seattle.gen_activity_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Resource Hierarchy
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('seattle.gen_resource_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('seattle.gen_resource_markov') }}">Markov</a>
+                          <a href="{{ url_for('seattle.gen_resource_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('seattle.gen_resource_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-side" id="ls">
+                    Real Data
+                    <div class="dropdown-content-side">
+                      <div class="dropdown-side1" id="ls">
+                        Activity Hierarchy
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('seattle.real_activity_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('seattle.real_activity_markov') }}">Markov</a>
+                          <a href="{{ url_for('seattle.real_activity_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('seattle.real_activity_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                      <div class="dropdown-side1" id="ls">
+                        Resource Hierarchy
+                        <div class="dropdown-content-side1">
+                          <a href="{{ url_for('seattle.real_resource_downstream') }}">Downstreamness</a>
+                          <a href="{{ url_for('seattle.real_resource_markov') }}">Markov</a>
+                          <a href="{{ url_for('seattle.real_resource_maxflow') }}">Maxflow</a>
+                          <a href="{{ url_for('seattle.real_resource_mean') }}">Mean</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div id="clockdiv">
+            <div>Demo Time Remaining:</div>
+            <span><span class="hours"></span></span>
+            <span>: <span class="minutes"></span></span>
+            <span>: <span class="seconds"></span></span>
+          </div>
+          <script>
+            initializeClock('clockdiv', parseInt({{ starttime }}), 
+                                        parseInt({{ expire }}));
+          </script>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container-fluid">
+    <div class="row">
+
+      {% block content %}{% endblock %}
+
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <p class="small text-muted">Demo by Jackey Liu for evaluation purposes.</p>
+
+    {% block footer %}{% endblock %}
+
+  </footer>
+</body>
+</html>

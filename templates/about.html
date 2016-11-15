@@ -1,0 +1,593 @@
+{# _myapp/templates/about.html_ #}
+
+{% extends "layout.html" %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block content %}
+      <div class="col-sm-3">
+        <div class="about-links">
+            <a href="#t0">Types of Nodes</a>
+            <a href="#t1">Types of Relationships</a>
+            <a href="#t2">Types of Hierarchies</a>
+            <a href="#t3">Algorithms</a>
+            <a href="#t4">The Visualization Tool</a>
+            <a href="#t5">Options Bar</a>
+            <a href="#t6">Search Bar</a>
+            <a href="#t7">Performance and Compatibility</a>
+            <a href="#t8">Ari and Seattle Data</a>
+            <a href="#t9">Known Bugs</a>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title" id="about-title">
+            <h1>How to use this visualization tool</h1>
+          </div>
+          <div class="chart-stage" id="leftStage">
+            <ul>
+              <a class="anchor" id="t0"></a>
+              <li class="topic">
+                <h3>Types of Nodes</h3>
+                <div class="answer">
+                  <ul>
+                    <p>The 3 types of nodes this visualization shows are:</p>
+                    <li>
+                      <h4>Loci:</h4>
+                      <p>
+                        These are just simple work loci (eg. 122C4iii), with no
+                        distinguishing resources or information outputs, which
+                        form the basis of our functional space graph that
+                        everything else is based on.
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Barcodes:</h4>
+                      <p>
+                        These are all the barcodes in the analyst dictionary,
+                        translated into subgraphs within the functional space.
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Companies:</h4>
+                      <p>
+                        These are real companies in the analyst dictionary.
+                        Note that some companies may appear twice, this is 
+                        because they map to multiple barcodes (most often for 
+                        multiple product lines).
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <a class="anchor" id="t1"></a>
+              <li class="topic">
+                <h3>Types of Relationships</h3>
+                <div class="answer">
+                  <ul>
+                    <p>The 4 types of relationships this visualization shows are:</p>
+                    <li>
+                      <h4>Connections:</h4>
+                      <p>
+                        The node-node connections between nodes in the functional
+                        graph translated from the Analyst Dictionary.
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Functional Proximity:</h4>
+                      <p>
+                        The node-node or subgraph-subgraph similarity scores 
+                        calculated from the functional space graph.
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Supply:</h4>
+                      <p>
+                        The customer-supplier relationships inferred to be likely 
+                        between nodes or subgraphs based on the functional graph.
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Competition:</h4>
+                      <p>
+                        The competitor relationships inferred from section 1s of
+                        10ks of the SP900 companies. The connections refer to 
+                        direct mentions of a company's competitors, and the
+                        competitiveness score refers to a score of how likely 
+                        two companies are to be competitors, calculated using
+                        an "independent paths" algorithm. 
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <a class="anchor" id="t2"></a>
+              <li class="topic">
+                <h3>Types of Hierarchies</h3>
+                <div class="answer">
+                  <ul>
+                    <p>
+                      Loci and barcodes have two types of hierarchies, while 
+                      companies have 4. This is simply because companies have
+                      been classified in more ways than barcodes.
+                    </p>
+                    <p>The 4 types of hier this visualization shows are:</p>
+                    <li>
+                      <h4>Activity:</h4>
+                      <p>
+                        This is the normal activity-priority structure, which 
+                        simply follows the work locus, where the top level 
+                        parents are 1.A., 1.B., ... 4.C., etc. and the next
+                        level parents are 11.A1., 11.A2., .... 22.B4., etc.
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Resource:</h4>
+                      <p>
+                        This is the resource-priority structure, which flips the 
+                        verb-object structure of the work locus, where the top 
+                        level parents are A.1., A.2., ... C.2., etc. and the next
+                        level parents are A1.11., A1.12., A1.13., ... C3.23., etc. 
+                      </p>
+                    </li>
+                    <li>
+                      <h4>NAICS:</h4>
+                      <p>
+                        The North American Industy Classification System.
+                        Read more about it here:
+                      </p>
+                      <a href="http://www.census.gov/eos/www/naics/faqs/faqs.html">
+                        www.census.gov/eos/www/naics/faqs/faqs.html
+                      </a>
+                    </li>
+                    <li>
+                      <h4>Syntax:</h4>
+                      <p>
+                        These are the syntax buckets, which were intended to 
+                        stratify companies to weight functions equally.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <a class="anchor" id="t3"></a>
+              <li class="topic">
+                <h3>Algorithms</h3>
+                  <div class="answer">
+                    <ul>
+                      <li>
+                        <h4>Node and Edge Similarity</h4>
+                        <p>
+                          These are the mose intuitive and simple notions of
+                          similarity, which is basically: 
+                          how much do two things overlap?
+                        </p>
+                        <p>The simplest way of calculating this score is just:</p>
+                        <p><em>|{intersection}| / |{union}|</em></p>
+                        <p>which is precisely what we did.</p>
+                      </li>
+                      <li>
+                        <h4>SimRank Score</h4>
+                        <p>
+                          SimRank is an alogrithm developed by Glen Jeh and 
+                          Jennifer Widom of Stanford University to measure 
+                          similarity between nodes, which you can read more 
+                          about here:
+                        </p>
+                        <a href="http://www-cs-students.stanford.edu/~glenj/simrank.pdf">
+                          www-cs-students.stanford.edu/~glenj/simrank.pdf
+                        </a>
+                        <p>
+                          Basically this algorithm says nodes A and B are more
+                          similar the more neighbors they share, and if they
+                          share neighbors of neighbors, that also increases
+                          their similarity, but not as much.
+                        </p>
+                      </li>
+                      <li>
+                        <h4>Neighbor Similarity</h4>
+                        <p>
+                          This algorithm is SimRank extended to subgraphs where
+                          we measure
+                          <br>
+                          <em>|{intersection}| / |{union}|</em>
+                          <br>
+                          of the neighbors of two nodes to find their similarity.
+                        </p>
+                      </li>
+                      <li>
+                        <h4>Vector Similarity</h4>
+                        <p>
+                          This algorithm converts subgraphs of the graph into
+                          vectors of "graphlets", which are small subgraphs of
+                          2 or 3 nodes in the larger graph, and then we
+                          calculate subgraph similarity by measuring the dot-
+                          product of two subgraphs' graphlet vectors.
+                        </p>
+                        <p>You can read more about what we did here:</p>
+                        <a href="http://www.jmlr.org/proceedings/papers/v5/shervashidze09a/shervashidze09a.pdf">
+                          www.jmlr.org/proceedings/papers/v5/shervashidze09a/shervashidze09a.pdf
+                        </a>
+                      </li>
+                      <li>
+                       <h4>Downstreamness</h4>
+                        <p>
+                          Intuitively, company A is most likely to supply 
+                          company B if company B is just a little bit downstream
+                          of company A. However, we believe that the enterprise
+                          locus of company B being downstream from company A
+                          is much more significant than company B's customer 
+                          being downstream from company A. The exact formula
+                          we used was:
+                        </p>
+                        <p>
+                          score = 
+                          <em>
+                            C<sup>L</sup>2<sup>D</sup>e<sup>-2</sup>/
+                            D<sup>2</sup>
+                          </em>
+                        </p>
+                        <p>
+                          Where C is a decay constant, L is the position of node
+                          B in company B, and D is the distance from node A in
+                          company A to node B in company B.
+                        </p>
+                      </li>
+                      <li>
+                        <h4>Markov</h4>
+                        <p>
+                          This algorithm  measures the probability of landing on
+                          company B within X steps from company A, divided by
+                          the ergodic (stationary) probability of being in 
+                          company B.
+                        </p>
+                      </li>
+                      <li>
+                        <h4>Max Flow</h4>
+                        <p>
+                          Ah, the classic max flow problem. We simply used the 
+                          max flow from node A to B as node A's likelihood to 
+                          supply B. Read more about it here:
+                        </p>
+                        <a href="https://en.wikipedia.org/wiki/Maximum_flow_problem">
+                          en.wikipedia.org/wiki/Maximum_flow_problem
+                        </a>
+                      </li>
+                      <li>
+                        <h4>Mean</h4>
+                        <p>
+                          These are just simple means of the previous metrics.
+                          Is it the best way to aggregate the data? Probably 
+                          not, but we don't really have any intuition for 
+                          anything else, so simple mean it is!
+                        </p>
+                      </li>
+                      <li>
+                        <h4>Independent Paths (for competitiveness scores)</h4>
+                        <p>
+                          The independent paths finds the number of independent 
+                          paths between two nodes in a graph.
+                        </p>
+                        <p>
+                          More specifically, two paths are defined as independent 
+                          if deleting all the edges in one path does not affect 
+                          the other. The intuition behind this algorithm is to 
+                          identify bottlenecks through a single node that similar 
+                          algorithms like max-flow ignore.
+                        </p>
+                        <p>
+                          This algorithm repeatedly finds and deletes the shortest 
+                          path between two nodes in the graph, calculating a score
+                          for each path: 
+                        </p>
+                        <p>
+                          score = <em>C<sup>d</sup></em>
+                        </p>
+                        <p>
+                          Where C is a decay constant and d is the length of the
+                          path. The total connectedness score is then just the 
+                          sum of all independent path scores.
+                        </p>
+                        <p>
+                          This algorithm provides a heuristic for the connectedness 
+                          of two nodes in a graph.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+              </li>
+              <a class="anchor" id="t4"></a>
+              <li class="topic">
+                <h3>The Visualization Tool</h3>
+                <div class="answer">
+                  <ul>
+                    <p>
+                      This visualization tool is essentially just a graph visualization
+                      tool specifically designed to work with Locus data. The nodes
+                      can be Loci, Barcodes, Companies, or any other data point
+                      that can be classified into a hierarchical structure.
+                    </p>
+                    <p>
+                      It displays the nodes as a circular right, with edges linking 
+                      them through the center. The center of the graph is actually a
+                      tree structure with the top level parent in the center, and its
+                      children and grandchildren and etc. towards the edges. The nodes
+                      themselves are always the lowest level children in the tree, and
+                      the edges are direct child-child links.
+                    </p>
+                  </ul>
+                </div>
+              </li>
+              <a class="anchor" id="t5"></a>
+              <li class="topic">
+                <h3>Options Bar</h3>
+                <div class="answer">
+                  <ul>
+                    <li>
+                      <h4>Redraw visualization</h4>
+                      <p>
+                        Since everything is draw right on you computer, things
+                        can and will sometimes go wrong and break.
+                      </p>
+                      <p>
+                        Maybe nodes will be appearing, maybe the lines will start
+                        flying out of the circle, whatever the case, just click
+                        "Redraw Visualization" and everything should
+                        return to normal.
+                      </p>
+                      <p><em>*This does not affect your current options settings.</em></p>
+                    </li>
+                    <li>
+                      <h4>Show all nodes</h4>
+                      <p>
+                        Because these graphs can be very large, displaying all
+                        node labels is turned off by default. Turn this on to
+                        show all node labels (their names), but be warned, they
+                        may not be readable!
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Highlight edges</h4>
+                      <p>
+                        You can always mouse over nodes to highlight them, but
+                        this option also lets you mouse over and highlight edges.
+                      </p>
+                      <p>
+                        <em>
+                          This option may significantly slow down your visualization.
+                        </em>
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Node Font Size</h4>
+                      <p>
+                        Since the graphs are so large, it can be difficult or
+                        impossible to highlight exactly the node you want. To
+                        combat this problem, you can simply lower the font size
+                        and zoom in to click on the exact node you want. Of course
+                        you can also increase node size if you're having difficulty
+                        reading their labels, but why do that when you can zoom?
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Edge Width</h4>
+                      <p>
+                        You can always mouse over nodes to highlight them, but
+                        this option also lets you mouse over and highlight edges.
+                      </p>
+                      <p>
+                        <em>
+                          This option may significantly slow down your visualization.
+                        </em>
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Edge Width</h4>
+                      <p>
+                        Depending on your display, the visualization may look
+                        very grainy/pixelated. Or maybe there are just too many
+                        lines and you want to make them thinner. Or maybe you 
+                        want to highlight a particular line 
+                        (again, zooming is supported). In any case, it does
+                        what you would expect it too.
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Bundle Tension</h4>
+                      <p>
+                        This changes how stronly the "tree paths" pull on the
+                        edges between nodes. A bundle tension of 0 will show
+                        connections between lines as their straight-line paths,
+                        while a bundle tension of 1 would for every path to
+                        go up each level of a node's parent then back down again
+                        to reach its target.
+
+                        For more information on tree diagrams see the section 
+                        above about the graph structure.
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Edge Weight Filter</h4>
+                      <p>
+                        Unfortunately, weights are not displayed directly when
+                        and edge is highlighted, but if you want to get a 
+                        smaller graph with only weights in a particular range, 
+                        this filter is good for that.
+                      </p>
+                      <p>
+                        <em>
+                          *The edge weight scale is exponential.
+                        </em>
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Showing Top ___ Inputs/Outputs</h4>
+                      <p>
+                        This slider provides another way to filter down the
+                        graph. Top X Inputs/Outputs means only the top X inputs
+                        or outputs with the highest weights will be shown.
+                        Please note that many edges will often have the same weight,
+                        which is why "Top 5" may actually be top 50 because there
+                        are 46 ties for number 3.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <a class="anchor" id="t6"></a>
+              <li class="topic">
+                <h3>Search Bar</h3>
+                <div class="answer">
+                  <ul>  
+                    <li>
+                      <h4>The node I want isn't showing up!</h4>
+                      <p>
+                        For aesthetic and performance reasons, the search 
+                        function will only return the top 10 results.
+                      </p>
+                      <p>   
+                        It's also possible that you're not searching by the
+                        correct fields, in which case see the answer below.
+                      </p>
+                    </li>
+                    <li>
+                      <h4>Can I search by country/state/loci/etc?</h4>
+                      <p>
+                        The search function currently only searches for certain
+                        keywords associated with each type of node.
+                      </p>
+                      <p>For loci, they are:</p>
+                      <ul class="styled-list">
+                        <li>The work locus (without DRs or IOs)</li>
+                        <li>Any IOs it can have</li>
+                      </ul>
+                      <br>
+                      <p>For barcodes, they are:</p>
+                      <ul class="styled-list">
+                        <li>The full barcode name</li>
+                        <li>The ADID associated with the barcode</li>
+                      </ul>
+                      <br>
+                      <p>For companies, they are:</p>
+                      <ul class="styled-list">
+                        <li>The full company name</li>
+                        <li>The company ticker</li>
+                        <li>The company's Locus number</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>Can I see more information about a node?</h4>
+                      <p>
+                        Just click on the node or enter your search term to
+                        see more detailed information about the node.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <a class="anchor" id="t7"></a>
+              <li class="topic">
+                <h3>Performance and Compatibility</h3>
+                <div class="answer">
+                  <ul> 
+                    <li>
+                      <h4>My graph is too slow/not loading!</h4>
+                      <p>
+                        Unfortunately, since everything is drawn by your computer,
+                        your mileage may vary depending on your computer's performance.
+                      </p>
+                      <p>
+                        That said, most of these graphs should work fine (albeit a bit slow)
+                        once loaded on most computers, and they certainly shouldn't cause your
+                        computer to freeze or crash!
+                      </p>
+                      <br>
+                      <p>Some helpful tips to speed up your visualization:</p>
+                      <ul class="styled-list">
+                        <li>Filter down the edges by weight</li>
+                        <li>Filter to only the top ~10 edges or less</li>
+                        <li>Turn off edge highlighting</li>
+                        <li>Turn off node visibility</li>
+                        <li>Don't drag the sliders, type the value you want to input</li>
+                        <li>Zoom out (seriously, zoomed out = fewer pixels to render)</li>
+                        <li>Don't have too many other tabs/windows open</li>
+                        <li>Enable your browser's caching so you don't have to keep downloading the data</li>
+                        <li>Be patient, clicking around while it's loading will only slow it down!</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>Can I view this on x/y/z browser/device?</h4>
+                      <p>
+                        This visualization was designed to work with Chrome 
+                        on a PC with at least a 1080p display 
+                        (it looks even better in 4K). Some interactivity may 
+                        be lost with other browsers and/or devices.
+                      </p>
+                      <p>
+                        While D3 is very fast and most modern (read less than 2 years old)
+                        computers should have no problem rendering the visualization, 
+                        please don't expect lightning fast responsiveness from your
+                        2011 Macbook Air.
+                      </p>
+                      <p>
+                        <em>
+                          Protip: if you're not using a 4K/retina display, try zooming
+                          out [CTRL + Scroll]. Since everything is drawn with vector 
+                          graphics, you'll still be able to see everything perfectly!
+                        </em>
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <a class="anchor" id="t8"></a>
+              <li class="topic">
+                <h3>Ari and Seattle Data</h3>
+                <div class="answer">
+                  <ul>
+                      <p>
+                        The Ari and Seattle datasets are two manually coded
+                        datasets with manually coded data that serves as a point
+                        of comparison for comparing the generated supply data
+                        with manually coded supply data.
+                      </p>
+                      <p>
+                        The Ari data is just a collection of ~1500 barcodes
+                        that were coded by someone named Ari.
+                      </p>
+                      <p>
+                        The Seattle dataset is a manual graph of 14 barcodes 
+                        associated in some way with the local aerospace industy.
+                      </p>
+                  </ul>
+                </div>
+              </li>
+              <a class="anchor" id="t9"></a>
+              <li class="topic">
+                <h3>Known Bugs</h3>
+                <div class="answer">
+                  <ul>
+                    <p>
+                      The maxflow algorithm was intended for company-level 
+                      anlaysis and produces very odd looking graphs at the 
+                      barcode level. This may or may not be fixed in future
+                      updates that may or may not exist.
+                    </p>
+                    <p>
+                      <em>Yes we are aware there are typos.</em>
+                    </p>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="chart-notes">
+            This took a while to write, so thanks for reading! ^.^
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+      </div>
+{% endblock %}

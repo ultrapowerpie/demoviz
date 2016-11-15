@@ -1,0 +1,164 @@
+#about {
+    color: white;
+    display: block;
+    z-index: 3;
+}
+
+.about-links {
+    position: fixed;
+    top: 28px;
+    left: 4%;
+    width: 20%;
+    padding: 0;
+    font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    background-color: #3d4a57;
+    margin: 2em 0;
+}
+
+.about-links a {
+    margin: 0;
+    padding: 0.5em 1em;
+    display: block;
+    color: white;
+}
+
+.about-links a:hover {
+    background-color: #bbb;
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -60px;
+    visibility: hidden;
+}
+
+ul
+{
+    display: block;
+    list-style-type: none;
+}
+
+.styled-list {
+    list-style-type: disc;
+}
+
+h4 {
+    font-weight: 700;
+}
+
+.topic h3 {
+    font-weight: 900;
+}
+
+.answer {
+    width: 90%;
+    margin-bottom: 2em;
+}
+
+#clockdiv {
+    font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    color: #fbfbfb;
+    text-decoration: none;
+    display: block;
+}
+
+.login {
+    border: 2px solid #3d4a57;
+    border-radius: .4em;
+    background-color: #fbfbfb;
+    box-shadow: none;
+    font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: #3d4a57;
+    text-decoration: none;
+    display: block;
+}
+
+.navbar-nav > li > div {
+  min-width: 140px;
+  margin: 0px 16px 0px 0px;
+  padding: 16px 0px 0px 16px;
+  align-self: bottom;
+}
+
+.dropdown {
+    font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    color: #fbfbfb;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0px;
+}
+
+.dropdown-side,
+.dropdown-side1,
+.dropdown-side2,
+.dropdown-side3 {
+    height: inherit;
+    color: #fbfbfb;
+    padding: 12px 16px;
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #3d4a57;
+    width: 100%;
+    margin: 12px 10px 10px -16px;
+}
+
+.dropdown-content-side,
+.dropdown-content-side1,
+.dropdown-content-side2,
+.dropdown-content-side3 {
+    display: none;
+    position: absolute;
+    height: inherit;
+    left: 100%;
+    background-color: #3d4a57;
+    width: 100%;
+    margin-top: -29px;
+}
+
+.dropdown-content a,
+.dropdown-content-side a,
+.dropdown-content-side1 a,
+.dropdown-content-side2 a,
+.dropdown-content-side3 a {
+    color: #fbfbfb;
+    padding: 12px 16px;
+    display: block;
+}
+
+.dropdown:hover,
+.dropdown-side:hover,
+.dropdown-side1:hover,
+.dropdown-side2:hover,
+.dropdown-side3:hover,
+.dropdown a:hover,
+.dropdown-content a:hover,
+.dropdown-content-side a:hover,
+.dropdown-content-side1 a:hover,
+.dropdown-content-side2 a:hover,
+.dropdown-content-side3 a:hover {
+  background-color: #bbb;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-side:hover .dropdown-content-side, 
+.dropdown-side1:hover .dropdown-content-side1,
+.dropdown-side2:hover .dropdown-content-side2,
+.dropdown-side3:hover .dropdown-content-side3 {
+    display: block;
+}

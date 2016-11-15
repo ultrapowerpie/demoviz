@@ -1,0 +1,39 @@
+.node,
+.modalNode {
+  font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  fill: #bbb;
+}
+
+.link {
+  stroke: steelblue;
+  stroke-opacity: .3;
+  fill: none;
+}
+
+.link-on {
+  stroke: steelblue;
+  stroke-opacity: 1;
+  fill: none;
+}
+
+.link-off,
+.modalLink  {
+  stroke: #bbb;
+  stroke-opacity: .1;
+  fill: none;
+  pointer-events: none;
+}
+
+.link--source,
+.link--target {
+  stroke-opacity: .7;
+}
+
+.link--source {
+  stroke: #d62728; /*red*/
+}
+
+.link--target {
+  stroke: #2ca02c; /*green*/
+}

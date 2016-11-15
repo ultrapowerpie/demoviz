@@ -1,0 +1,52 @@
+
+.easy-autocomplete.eac-round {
+  font-family: "Open Sans", "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.easy-autocomplete.eac-round input {
+  border: 2px solid #D9D9D9;
+  border-radius: 5px;
+  color: #888;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  min-width: 100%;
+  padding: 10px;
+}
+.easy-autocomplete.eac-round input:hover, .easy-autocomplete.eac-round input:focus {
+  border-color: #3079ed;
+  border-width: 1px;
+  border-radius: 5px;
+}
+.easy-autocomplete.eac-round ul {
+  position: absolute;
+  background: none;
+  border-color: #888;
+  border-width: 2px;
+  box-shadow: none;
+  min-width: 100%;
+  max-height: 600px;
+  z-index: 100;
+}
+.easy-autocomplete.eac-round ul li, .easy-autocomplete.eac-round ul .eac-category {
+  background: #fff;
+  border-color: #3079ed;
+  border-width: 0 2px;
+  font-size: 14px;
+  padding: 8px 12px;
+  transition: all 0.4s ease 0s;
+}
+.easy-autocomplete.eac-round ul li.selected, .easy-autocomplete.eac-round ul .eac-category.selected {
+  background-color: #d4e3fb;
+}
+.easy-autocomplete.eac-round ul li:first-child, .easy-autocomplete.eac-round ul .eac-category:first-child {
+  border-radius: 5px 5px 0 0;
+  border-width: 2px 2px 0;
+}
+.easy-autocomplete.eac-round ul li:last-child, .easy-autocomplete.eac-round ul .eac-category:last-child {
+  border-radius: 0 0 10px 10px;
+  border-width: 0 2px 2px;
+}
+.easy-autocomplete.eac-round ul li b, .easy-autocomplete.eac-round ul .eac-category b {
+  font-weight: 700;
+}
